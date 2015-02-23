@@ -7,6 +7,7 @@ if(!$user->isLoggedIn()){
 	Redirect::to('index.php');
 }
 
+
 if(Input::exists()){
 	if(Token::check(Input::get('token'))){
 
@@ -23,13 +24,13 @@ if(Input::exists()){
 				'max' => 30
 				),
 			'summary' => array(
-				'required' => true,
-				'max' => 30
-				),
-			'gender' => array(
-				'required' => true,
-				'max' => 1
-				)
+				'required' => false,
+				'max' => 100
+			 	)//,
+			// 'gender' => array(
+			// 	'required' => true,
+			// 	'max' => 1
+			// 	)
 		));
 
 		$target_dir = "images/profile/";
@@ -78,13 +79,15 @@ if(Input::exists()){
 		    }
 		}
 
+
+
 		if($validation->passed()){
 			try {
 				$user->update(array(
 					'name' => Input::get('name'),
 					'email' => Input::get('email'),
 					'summary' => Input::get('summary'),
-					'gender' => Input::get('gender'),
+					'gender' => Input::get('sex'),
 					'picture' => $target_file
 
 				));
@@ -113,13 +116,10 @@ if(Input::exists()){
 		<br>
 		<label for="summary">summary</label>
 		<textarea name="summary" id="summary" cols="30" rows="5"><?php echo escape($user->data()->summary); ?></textarea>
-		<br>
-		<label for="gender">gender</label>
-		<input type="text" name="gender" value="<?php echo escape($user->data()->gender); ?>" >
 		<br>	
-		<label for="remember">
-			<input type="checkbox" name="male" id="male" > male
-			<input type="checkbox" name="female" id="female" > female
+		<label for="sex">
+			<input type="radio" name="sex" value="m">Male<br>
+			<input type="radio" name="sex" value="f">Female
 		</label>
 		<br>
 		Select image to upload:

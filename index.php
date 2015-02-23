@@ -12,14 +12,20 @@ $posts = DB::getInstance()->get('posts', array('userID', '=',$user->data()->id )
 
 ?>
 	<p>hello <a href="profile.php?user=<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->username); ?></a>!</p>
-
+	<h2>Users Options</h2>
 	<ul>
 		<li><a href="logout.php">Log Out</a></li>
 		<li><a href="update.php">Update Details</a></li>
 		<li><a href="changepassword.php">Change Password</a></li>
-		<li><a href="posts.php">posts</a></li>
+		<li><a href="addPost.php">Add new post</a></li>
 	</ul>
-	
+
+	<h2>Navigation</h2>
+
+	<ul>
+		<li><a href="posts.php">Public Posts</a></li>	
+	</ul>
+
 	<h2>My Posts</h2>
 <?php 
 
@@ -38,6 +44,7 @@ $posts = DB::getInstance()->get('posts', array('userID', '=',$user->data()->id )
 <?php
 		}
 		echo "</ul>";
+		echo "<h3>Your Goals</h3>";
 
 	}
 

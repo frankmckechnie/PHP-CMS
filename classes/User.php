@@ -37,9 +37,9 @@ class User{
         }
     }
 
-    public function create($fields = array()) {
-        if(!$this->_db->insert('users', $fields)) {
-            throw new Exception('Sorry, there was a problem creating your account');
+    public function create($name,$table, $fields = array()) {
+        if(!$this->_db->insert($table, $fields)) {
+            throw new Exception('Sorry, there was a problem creating your ' . $name);
         }
     }
 

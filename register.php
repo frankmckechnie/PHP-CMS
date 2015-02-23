@@ -33,7 +33,7 @@ if(Input::exists()){
 			$salt = Hash::salt(32);
 
 			try {
-				$user->create(array(
+				$user->create('acount','users',array(
 					'username' => Input::get('username'),
 					'password' => Hash::make(Input::get('password'), $salt),
 					'salt' => $salt,
