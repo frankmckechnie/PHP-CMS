@@ -1,6 +1,6 @@
 <?php
 require_once 'core/init.php';
-
+include 'includes/nav.php';
 $user = new User();
 
 if(!$user->isLoggedIn()){
@@ -118,8 +118,8 @@ if(Input::exists()){
 		<textarea name="summary" id="summary" cols="30" rows="5"><?php echo escape($user->data()->summary); ?></textarea>
 		<br>	
 		<label for="sex">
-			<input type="radio" name="sex" value="m">Male<br>
-			<input type="radio" name="sex" value="f">Female
+			<input type="radio" name="sex" value="m" <?php echo ($user->data()->gender=='m')?'checked':'' ?> >Male<br>
+			<input type="radio" name="sex" value="f" <?php echo ($user->data()->gender=='f')?'checked':'' ?> >Female
 		</label>
 		<br>
 		Select image to upload:

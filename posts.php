@@ -1,6 +1,6 @@
 <?php 
 require_once 'core/init.php';
-
+include 'includes/nav.php';
 $posts = DB::getInstance()->get('posts', array('public', '=', 1));
 $results = $posts->results();
 // print_r($results);
@@ -28,5 +28,7 @@ if (!$posts->count()){ // row count
 }
 
 
-
+if (Session::exists('home')){
+	echo '<p>' . Session::flash('home') . '</p>';
+}
 ?>

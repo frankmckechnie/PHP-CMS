@@ -1,6 +1,5 @@
 <?php
 require_once 'core/init.php';
-
 if(Input::exists()){
 	if(Token::check(Input::get('token'))){
 		$validate = new Validate();
@@ -11,10 +10,9 @@ if(Input::exists()){
 				'max' => 20
 			)
 		));
-
 		if($validation->passed()){
 			$user = new User();
-			echo $user->data()->gender;
+	
 			$public = (Input::get('public') === 'on') ? 1 : 0;
 			try {
 
@@ -43,6 +41,8 @@ if(Input::exists()){
 		}
 	}
 }
+
+include 'includes/nav.php';
 
 ?>
 <h1>New post!</h1>

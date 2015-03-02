@@ -1,10 +1,5 @@
 <?php
 require_once 'core/init.php';
-
-if (Session::exists('home')){
-	echo '<p>' . Session::flash('home') . '</p>';
-}
-
 $user = new User();
 if($user->isLoggedIn()){
 
@@ -39,7 +34,8 @@ $posts = DB::getInstance()->get('posts', array('userID', '=',$user->data()->id )
 				<a href="viewPost.php?post=<?php echo escape($post->id); ?>"><?php echo escape($post->title); ?></a>
 				<?php echo escape($post->timeStamp); ?>
 				<br> By <a href="profile.php?user=<?php echo escape($post->username); ?>"><?php echo escape($post->username); ?></a>
-				Gender = <?php echo escape($post->gender);  ?>
+				Gender = <?php echo escape($post->gender);  ?><br>
+				<a href="delete.php?post=<?php echo escape($post->id); ?>">Delete</a>
 			</li>
 <?php
 		}
@@ -51,7 +47,9 @@ $posts = DB::getInstance()->get('posts', array('userID', '=',$user->data()->id )
 	if($user->hasPermission('admin')){
 		echo "you have admin";
 	}
-	
+	if (Session::exists('home')){
+		echo '<p>' . Session::flash('home') . '</p>';
+	}
 
 }else{
 	echo '<p>you need to <a href="login.php" >login</a> or <a href="register.php">register</a> </p>';
