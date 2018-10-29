@@ -1,5 +1,5 @@
 # PHP-CMS
-PHP OOP Login 
+PHP OOP (Object Oriented Programming) Login 
 
 # Details
 
